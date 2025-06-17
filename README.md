@@ -1,33 +1,10 @@
-### AI Tutor Chat
-
-I\'m your AI tutor. I\'m here to help you with any questions about the selected course
-
-### Installation
-
-You can install this app using the [bench](https://github.com/frappe/bench) CLI:
-
-```bash
-cd $PATH_TO_YOUR_BENCH
-bench get-app $URL_OF_THIS_REPO --branch develop
-bench install-app ai_tutor_chat
-```
-
-### Contributing
-
-This app uses `pre-commit` for code formatting and linting. Please [install pre-commit](https://pre-commit.com/#installation) and enable it for this repository:
-
-```bash
-cd apps/ai_tutor_chat
-pre-commit install
-```
-
-Pre-commit is configured to use the following tools for checking and formatting your code:
-
-- ruff
-- eslint
-- prettier
-- pyupgrade
-
-### License
-
-mit
+# Installation Guide
+1. You have to have bench installed on your WSL
+1. You have to have the ignis_academy bench created
+    - `bench init ignis_academy`
+1. Download the Auth app:
+    - `bench get-app ai_tutor_chat git@github.com:ExarLabs/academy-ai-tutor-chat.git` or `bench get-app ai_tutor_chat https://github.com/ExarLabs/academy-ai-tutor-chat.git`, then:
+1. You have to have the academy.local site
+    - `bench new-site academy.local`
+1. Install the Auth app:
+    - `bench --site academy.local install-app ai_tutor_chat`
