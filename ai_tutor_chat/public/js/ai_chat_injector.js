@@ -5,9 +5,6 @@
 (function() {
     'use strict';
 
-    console.log('Script loaded:', window.location.pathname);
-    console.log('Is LMS page:', window.location.pathname.includes('/lms'));
-
     // --- Utility functions ---
 
     function getCsrfToken() {
@@ -246,7 +243,6 @@
     }
 
     function injectAITutorTabs() {
-        console.log('Checking for lesson detail page...', window.location.pathname);
         if (!isOnLessonDetailPage()) return;
         const courseName = getCourseName();
         const lessonId = getLessonId();
@@ -269,7 +265,6 @@
         
         setupTabFunctionality();
         setupChatFunctionality(courseName, lessonId);
-        console.log('AI Tutor tabs injected');
     }
 
 
