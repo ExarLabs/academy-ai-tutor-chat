@@ -15,3 +15,9 @@ website_route_rules = [
 api_methods = {
     "ai_tutor_chat.api.chat.ask_tutor": ["POST"],
 }
+
+# Include JS/CSS files
+app_include_js = [
+    "/assets/ai_tutor_chat/js/lms_chat_detector.bundle.js",
+    "/assets/ai_tutor_chat/js/course_detail_injector.js"
+]
