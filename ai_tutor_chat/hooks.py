@@ -18,6 +18,5 @@ api_methods = {
 
 # Include JS/CSS files
 app_include_js = [
-    "/assets/ai_tutor_chat/js/lms_chat_detector.bundle.js",
     "/assets/ai_tutor_chat/js/course_detail_injector.js"
 ]
