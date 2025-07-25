@@ -60,11 +60,17 @@
         return `
             <!-- Tab Navigation -->
             <div class="flex border-b bg-surface-menu-bar">
-                <button id="chapter-tab" class="px-4 py-2 text-sm font-medium border-b-2 border-blue-600 text-blue-600 bg-white">
-                    Course Content
+                <button id="chapter-tab" class="flex-1 px-5 py-5 text-lg font-semibold border-b-2 border-blue-600 text-blue-600 bg-white flex items-center justify-center space-x-2">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                    </svg>
+                    <span>Course Content</span>
                 </button>
-                <button id="ai-tutor-tab" class="px-4 py-2 text-sm font-medium text-gray-500 hover:text-gray-700">
-                    AI Tutor
+                <button id="ai-tutor-tab" class="flex-1 px-5 py-5 text-lg font-semibold text-gray-500 hover:text-gray-700 flex items-center justify-center space-x-2">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"></path>
+                    </svg>
+                    <span>AI Tutor</span>
                 </button>
             </div>
             
@@ -102,8 +108,22 @@
         style.textContent = `
             .tab-content { display: block; }
             .tab-content.hidden { display: none; }
-            .tab-active { border-b-2: border-blue-600 !important; color: #2563eb !important; background-color: white !important; }
-            .tab-inactive { border-b-2: border-transparent !important; color: #6b7280 !important; }
+            .tab-active { 
+                border-bottom: 2px solid #2563eb !important; 
+                color: #2563eb !important; 
+                background-color: white !important; 
+            }
+            .tab-inactive { 
+                border-bottom: 2px solid transparent !important; 
+                color: #6b7280 !important; 
+                background-color: transparent !important;
+            }
+            #chapter-tab, #ai-tutor-tab {
+                transition: all 0.2s ease-in-out;
+            }
+            #chapter-tab:hover, #ai-tutor-tab:hover {
+                background-color: rgba(255, 255, 255, 0.1) !important;
+            }
         `;
         document.head.appendChild(style);
     }
@@ -198,19 +218,25 @@
         const aiTutorContent = document.getElementById('ai-tutor-content');
 
         function showChapterTab() {
-            chapterTab.classList.add('tab-active', 'border-blue-600', 'text-blue-600', 'bg-white');
-            chapterTab.classList.remove('tab-inactive', 'border-transparent', 'text-gray-500');
-            aiTutorTab.classList.add('tab-inactive', 'border-transparent', 'text-gray-500');
-            aiTutorTab.classList.remove('tab-active', 'border-blue-600', 'text-blue-600', 'bg-white');
+            chapterTab.classList.add('tab-active');
+            chapterTab.classList.remove('tab-inactive', 'text-gray-500');
+            chapterTab.classList.add('text-blue-600', 'bg-white');
+            
+            aiTutorTab.classList.add('tab-inactive', 'text-gray-500');
+            aiTutorTab.classList.remove('tab-active', 'text-blue-600', 'bg-white');
+            
             chapterContent.classList.remove('hidden');
             aiTutorContent.classList.add('hidden');
         }
 
         function showAITutorTab() {
-            aiTutorTab.classList.add('tab-active', 'border-blue-600', 'text-blue-600', 'bg-white');
-            aiTutorTab.classList.remove('tab-inactive', 'border-transparent', 'text-gray-500');
-            chapterTab.classList.add('tab-inactive', 'border-transparent', 'text-gray-500');
-            chapterTab.classList.remove('tab-active', 'border-blue-600', 'text-blue-600', 'bg-white');
+            aiTutorTab.classList.add('tab-active');
+            aiTutorTab.classList.remove('tab-inactive', 'text-gray-500');
+            aiTutorTab.classList.add('text-blue-600', 'bg-white');
+            
+            chapterTab.classList.add('tab-inactive', 'text-gray-500');
+            chapterTab.classList.remove('tab-active', 'text-blue-600', 'bg-white');
+            
             aiTutorContent.classList.remove('hidden');
             chapterContent.classList.add('hidden');
         }
