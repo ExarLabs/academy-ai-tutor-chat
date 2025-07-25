@@ -7,23 +7,25 @@ import json
 
 
 @frappe.whitelist(allow_guest=False)
-def ask_tutor(message, current_lesson=None):
+def ask_tutor(user_id=None, message=None, current_lesson=None, course_name=None):
     """
     Send message to the AI tutor API
     """
     try:
         # Identify the user making the request
-        user_id = frappe.session.user
+        if not user_id:
+            user_id = frappe.session.user
 
         # Init lesson
         if not current_lesson:
-            current_lesson = "Machine Learning Basics"
+            current_lesson = "Course Overview"
 
         # Init payload
         payload = {
             "user_id": user_id,
             "message": message,
             "current_lesson": current_lesson,
+            "course_name": course_name or "General Course"
         }
 
         # Get AI tutor API URL from site config or use default
@@ -48,25 +50,22 @@ def ask_tutor(message, current_lesson=None):
         print("AI Tutor API response:", response.text)
 
         if response.status_code == 200:
-            return {"success": True, "data": response.json()}
+            api_response = response.json()
+            # Return in the format expected by the JavaScript
+            return {"response": api_response.get("response", "I'm here to help! What would you like to know?")}
         else:
             frappe.log_error(
                 f"AI Tutor API Error: {response.status_code} - {response.text}",
                 "AI Assistant Chat Error",
             )
-            return {
-                "success": False,
-                "error": _("AI service temporarily unavailable. Please try again later."),
-            }
+            return {"response": "I'm sorry, I'm having trouble connecting to the AI service right now. Please try again later."}
 
     except requests.exceptions.RequestException as e:
         print("RequestException:", e)
         frappe.log_error(str(e), "AI Assistant Connection Error")
-        return {
-            "success": False,
-            "error": _("Failed to connect to AI service. Please check your connection."),
-        }
+        # For demo purposes, return a mock response when the external API is not available
+        return {"response": f"Thank you for your question: '{message}'. I'm here to help you with the course content. This is a demo response since the AI service is not currently available."}
     except Exception as e:
         print("Exception:", e)
         frappe.log_error(str(e), "AI Assistant General Error")
-        return {"success": False, "error": _("An unexpected error occurred. Please try again.")}
+        return {"response": "I encountered an error. Please try again."}
