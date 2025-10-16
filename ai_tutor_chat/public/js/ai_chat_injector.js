@@ -135,7 +135,7 @@
             const messageDiv = document.createElement('div');
             messageDiv.className = `mb-4 ${isUser ? 'text-right' : 'text-left'}`;
             messageDiv.innerHTML = `
-                <div class="inline-block p-3 rounded-lg max-w-sm ${isUser ? 'bg-blue-600 text-ink-gray-8' : 'bg-white text-ink-gray-8 border shadow-sm'}">
+                <div class="inline-block p-3 rounded-lg max-w-sm ${isUser ? 'bg-white text-ink-gray-8 border' : 'bg-white text-ink-gray-8 border shadow-sm'}">
                     <div class="font-semibold text-xs mb-2">${sender}</div>
                     <div class="text-sm leading-relaxed whitespace-pre-wrap">${text}</div>
                 </div>
