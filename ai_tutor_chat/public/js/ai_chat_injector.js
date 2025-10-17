@@ -217,10 +217,10 @@
         function showChapterTab() {
             chapterTab.classList.add('tab-active');
             chapterTab.classList.remove('tab-inactive', 'text-gray-500');
-            chapterTab.classList.add('text-blue-600', 'bg-white');
+            chapterTab.classList.add('text-ink-gray-8', 'bg-white');
             
             aiTutorTab.classList.add('tab-inactive', 'text-gray-500');
-            aiTutorTab.classList.remove('tab-active', 'text-blue-600', 'bg-white');
+            aiTutorTab.classList.remove('tab-active', 'text-ink-gray-8', 'bg-white');
             
             chapterContent.classList.remove('hidden');
             aiTutorContent.classList.add('hidden');
@@ -229,10 +229,10 @@
         function showAITutorTab() {
             aiTutorTab.classList.add('tab-active');
             aiTutorTab.classList.remove('tab-inactive', 'text-gray-500');
-            aiTutorTab.classList.add('text-blue-600', 'bg-white');
+            aiTutorTab.classList.add('text-ink-gray-8', 'bg-white');
             
             chapterTab.classList.add('tab-inactive', 'text-gray-500');
-            chapterTab.classList.remove('tab-active', 'text-blue-600', 'bg-white');
+            chapterTab.classList.remove('tab-active', 'text-ink-gray-8', 'bg-white');
             
             aiTutorContent.classList.remove('hidden');
             chapterContent.classList.add('hidden');
